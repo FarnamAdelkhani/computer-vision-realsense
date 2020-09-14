@@ -1,0 +1,6 @@
+# CMake generation dependency list for this directory.
+C:/GIT/librealsense/CMake/opengl_config.cmake
+C:/GIT/librealsense/examples/CMakeLists.txt
+C:/Users/Farnam/Desktop/cmake-3.18.2-win64-x64/share/cmake-3.18/Modules/FindOpenGL.cmake
+C:/Users/Farnam/Desktop/cmake-3.18.2-win64-x64/share/cmake-3.18/Modules/FindPackageHandleStandardArgs.cmake
+C:/Users/Farnam/Desktop/cmake-3.18.2-win64-x64/share/cmake-3.18/Modules/FindPackageMessage.cmake

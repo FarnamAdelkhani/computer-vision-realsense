@@ -1,0 +1,17 @@
+# CMake generation dependency list for this directory.
+C:/GIT/librealsense/third-party/glfw/CMake/modules/FindVulkan.cmake
+C:/GIT/librealsense/third-party/glfw/CMakeLists.txt
+C:/GIT/librealsense/third-party/glfw/src/glfw3.pc.in
+C:/GIT/librealsense/third-party/glfw/src/glfw3Config.cmake.in
+C:/GIT/librealsense/third-party/glfw/src/glfw_config.h.in
+C:/Users/Farnam/Desktop/cmake-3.18.2-win64-x64/share/cmake-3.18/Modules/BasicConfigVersion-SameMajorVersion.cmake.in
+C:/Users/Farnam/Desktop/cmake-3.18.2-win64-x64/share/cmake-3.18/Modules/CMakePackageConfigHelpers.cmake
+C:/Users/Farnam/Desktop/cmake-3.18.2-win64-x64/share/cmake-3.18/Modules/CheckCSourceCompiles.cmake
+C:/Users/Farnam/Desktop/cmake-3.18.2-win64-x64/share/cmake-3.18/Modules/CheckIncludeFile.c.in
+C:/Users/Farnam/Desktop/cmake-3.18.2-win64-x64/share/cmake-3.18/Modules/CheckIncludeFile.cmake
+C:/Users/Farnam/Desktop/cmake-3.18.2-win64-x64/share/cmake-3.18/Modules/CheckLibraryExists.cmake
+C:/Users/Farnam/Desktop/cmake-3.18.2-win64-x64/share/cmake-3.18/Modules/FindPackageHandleStandardArgs.cmake
+C:/Users/Farnam/Desktop/cmake-3.18.2-win64-x64/share/cmake-3.18/Modules/FindPackageMessage.cmake
+C:/Users/Farnam/Desktop/cmake-3.18.2-win64-x64/share/cmake-3.18/Modules/FindThreads.cmake
+C:/Users/Farnam/Desktop/cmake-3.18.2-win64-x64/share/cmake-3.18/Modules/GNUInstallDirs.cmake
+C:/Users/Farnam/Desktop/cmake-3.18.2-win64-x64/share/cmake-3.18/Modules/WriteBasicConfigVersionFile.cmake

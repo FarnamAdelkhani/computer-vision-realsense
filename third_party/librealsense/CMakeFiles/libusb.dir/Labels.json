@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/GIT/librealsense/build/CMakeFiles/libusb"
+		},
+		{
+			"file" : "C:/GIT/librealsense/build/CMakeFiles/a76fb93e888c6827dee3d7f9c360d88c/libusb.rule"
+		},
+		{
+			"file" : "C:/GIT/librealsense/build/CMakeFiles/85fcb735f2b7bbdd5f63ff4f8268289d/libusb-complete.rule"
+		},
+		{
+			"file" : "C:/GIT/librealsense/build/CMakeFiles/cc2818223bd2eac56260dd660e8e3501/libusb-install.rule"
+		},
+		{
+			"file" : "C:/GIT/librealsense/build/CMakeFiles/cc2818223bd2eac56260dd660e8e3501/libusb-mkdir.rule"
+		},
+		{
+			"file" : "C:/GIT/librealsense/build/CMakeFiles/cc2818223bd2eac56260dd660e8e3501/libusb-download.rule"
+		},
+		{
+			"file" : "C:/GIT/librealsense/build/CMakeFiles/cc2818223bd2eac56260dd660e8e3501/libusb-update.rule"
+		},
+		{
+			"file" : "C:/GIT/librealsense/build/CMakeFiles/cc2818223bd2eac56260dd660e8e3501/libusb-patch.rule"
+		},
+		{
+			"file" : "C:/GIT/librealsense/build/CMakeFiles/cc2818223bd2eac56260dd660e8e3501/libusb-configure.rule"
+		},
+		{
+			"file" : "C:/GIT/librealsense/build/CMakeFiles/cc2818223bd2eac56260dd660e8e3501/libusb-build.rule"
+		},
+		{
+			"file" : "C:/GIT/librealsense/build/CMakeFiles/cc2818223bd2eac56260dd660e8e3501/libusb-test.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"libusb"
+		],
+		"name" : "libusb"
+	}
+}

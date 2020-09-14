@@ -1,0 +1,14 @@
+# Target labels
+ libusb
+# Source files and their labels
+C:/GIT/librealsense/build/CMakeFiles/libusb
+C:/GIT/librealsense/build/CMakeFiles/a76fb93e888c6827dee3d7f9c360d88c/libusb.rule
+C:/GIT/librealsense/build/CMakeFiles/85fcb735f2b7bbdd5f63ff4f8268289d/libusb-complete.rule
+C:/GIT/librealsense/build/CMakeFiles/cc2818223bd2eac56260dd660e8e3501/libusb-install.rule
+C:/GIT/librealsense/build/CMakeFiles/cc2818223bd2eac56260dd660e8e3501/libusb-mkdir.rule
+C:/GIT/librealsense/build/CMakeFiles/cc2818223bd2eac56260dd660e8e3501/libusb-download.rule
+C:/GIT/librealsense/build/CMakeFiles/cc2818223bd2eac56260dd660e8e3501/libusb-update.rule
+C:/GIT/librealsense/build/CMakeFiles/cc2818223bd2eac56260dd660e8e3501/libusb-patch.rule
+C:/GIT/librealsense/build/CMakeFiles/cc2818223bd2eac56260dd660e8e3501/libusb-configure.rule
+C:/GIT/librealsense/build/CMakeFiles/cc2818223bd2eac56260dd660e8e3501/libusb-build.rule
+C:/GIT/librealsense/build/CMakeFiles/cc2818223bd2eac56260dd660e8e3501/libusb-test.rule

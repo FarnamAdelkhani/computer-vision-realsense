@@ -1,0 +1,9 @@
+# CMake generation dependency list for this directory.
+C:/GIT/librealsense/common/CMakeLists.txt
+C:/GIT/librealsense/tools/realsense-viewer/CMakeLists.txt
+C:/Users/Farnam/Desktop/cmake-3.18.2-win64-x64/share/cmake-3.18/Modules/CheckCSourceCompiles.cmake
+C:/Users/Farnam/Desktop/cmake-3.18.2-win64-x64/share/cmake-3.18/Modules/CheckIncludeFile.cmake
+C:/Users/Farnam/Desktop/cmake-3.18.2-win64-x64/share/cmake-3.18/Modules/CheckLibraryExists.cmake
+C:/Users/Farnam/Desktop/cmake-3.18.2-win64-x64/share/cmake-3.18/Modules/FindPackageHandleStandardArgs.cmake
+C:/Users/Farnam/Desktop/cmake-3.18.2-win64-x64/share/cmake-3.18/Modules/FindPackageMessage.cmake
+C:/Users/Farnam/Desktop/cmake-3.18.2-win64-x64/share/cmake-3.18/Modules/FindThreads.cmake

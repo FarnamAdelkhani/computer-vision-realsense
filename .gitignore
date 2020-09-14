@@ -348,3 +348,9 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+computer_vision_realsense/computer_vision_realsense.sln
+computer_vision_realsense/computer_vision_realsense.vcxproj
+computer_vision_realsense/computer_vision_realsense.vcxproj.filters
+*.sln
+*.vcxproj
+*.filters
