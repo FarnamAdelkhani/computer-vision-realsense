@@ -12,11 +12,13 @@ int main()
 	CascadeClassifier face_cascade;
 	CascadeClassifier eyes_cascade;
 	CascadeClassifier smile_cascade;
+	CascadeClassifier body_cascade;
 
 	//Load cascades
 	face_cascade.load("third_party/opencv/etc/haarcascades/haarcascade_frontalface_default.xml");
 	eyes_cascade.load("third_party/opencv/etc/haarcascades/haarcascade_eye_tree_eyeglasses.xml");
 	smile_cascade.load("third_party/opencv/etc/haarcascades/haarcascade_smile.xml");
+	body_cascade.load("third_party/opencv/etc/haarcascades/haarcascade_fullbody.xml");
 
 	//Set capture device
 	VideoCapture cap(0);
@@ -48,13 +50,13 @@ int main()
 		//Detect faces
 		std::vector<Rect> faces;
 		//Detects objects of different sizes in the input image. The detected objects are returned as a list of rectangles.
-		face_cascade.detectMultiScale( gray_scale,      //image - Matrix of the type CV_8U containing an image
-							   		   faces, 			//objects - Vector of rectangles where each rectangle contains the detected object
-							   		   1.2, 			//scaleFactor - Parameter specifying how much the image size is reduced at each image scale.
-							   		   3,               //minNeighbors - Parameter specifying how many neighbors each candidate rectangle should have to retain it.
-							   		   0| CASCADE_SCALE_IMAGE,
-							   		   Size(40, 40),    //minSize - Minimum possible object size. Objects smaller than that are ignored
-			                           Size(300,300));  //maxSize - Maximum possible object size. Objects larger than that are ignored.
+		face_cascade.detectMultiScale(gray_scale,      //image - Matrix of the type CV_8U containing an image
+			faces, 			//objects - Vector of rectangles where each rectangle contains the detected object
+			1.2, 			//scaleFactor - Parameter specifying how much the image size is reduced at each image scale.
+			3,               //minNeighbors - Parameter specifying how many neighbors each candidate rectangle should have to retain it.
+			0 | CASCADE_SCALE_IMAGE,
+			Size(40, 40),    //minSize - Minimum possible object size. Objects smaller than that are ignored
+			Size(300, 300));  //maxSize - Maximum possible object size. Objects larger than that are ignored.
 
 		for (size_t i = 0; i < faces.size(); i++)
 		{
@@ -63,14 +65,14 @@ int main()
 			Scalar green = Scalar(0, 255, 0);
 			Scalar blue = Scalar(0, 0, 255);
 
-			Point center(faces[i].x + faces[i].width / 2, 
-						 faces[i].y + faces[i].height / 2);
+			Point center(faces[i].x + faces[i].width / 2,
+				faces[i].y + faces[i].height / 2);
 
 			/*
 			ellipse(frame,						 //image
 					center, 					 //center
 					Size(faces[i].width / 2, 	 //axes
-						 faces[i].height / 2), 
+						 faces[i].height / 2),
 					0, 							 //angle
 					0, 							 //start angle
 					360, 						 //end angle
@@ -80,14 +82,14 @@ int main()
 					0 );						 //shift
 			*/
 
-			rectangle( frame,                              //image
-					   Point(faces[i].x, faces[i].y), 	   //1st vertex of rectangle
-					   Point(faces[i].x + faces[i].width,  //vertex opposite to 1st
-					   	  faces[i].y + faces[i].height), 
-					   red, 			   //color
-					   4, 								   //thickness
-					   8, 								   //Type of line
-					   0 );								   //shift
+			rectangle(frame,                              //image
+				Point(faces[i].x, faces[i].y), 	   //1st vertex of rectangle
+				Point(faces[i].x + faces[i].width,  //vertex opposite to 1st
+					faces[i].y + faces[i].height),
+				red, 			   //color
+				4, 								   //thickness
+				8, 								   //Type of line
+				0);								   //shift
 
 			Mat faceROI = gray_scale(faces[i]);
 
@@ -97,16 +99,16 @@ int main()
 
 			for (size_t j = 0; j < eyes.size(); j++)
 			{
-				Point eye_center(faces[i].x + eyes[j].x + eyes[j].width / 2, 
-					             faces[i].y + eyes[j].y + eyes[j].height / 2);
-				
+				Point eye_center(faces[i].x + eyes[j].x + eyes[j].width / 2,
+					faces[i].y + eyes[j].y + eyes[j].height / 2);
+
 				int radius = cvRound((eyes[j].width + eyes[j].height) * 0.20);
 
-				circle( frame, 
-						eye_center, 
-						radius, 
-						blue,
-						3 );
+				circle(frame,
+					eye_center,
+					radius,
+					blue,
+					3);
 			}
 
 			std::vector<Rect> smile;
@@ -114,20 +116,40 @@ int main()
 
 			for (int j = 0; j < smile.size(); j++)
 			{
-				Point smile_center( faces[i].x + smile[j].x + smile[j].width / 2, 
-								    faces[i].y + smile[j].y + smile[j].height / 2);
+				Point smile_center(faces[i].x + smile[j].x + smile[j].width / 2,
+					faces[i].y + smile[j].y + smile[j].height / 2);
 
 				int radius = cvRound((smile[j].width + smile[j].height) * 0.25);
-				circle( frame, 
-						smile_center, 
-						radius, 
-						green, 
-						4, 
-						8, 
-						0 );
+				circle(frame,
+					smile_center,
+					radius,
+					green,
+					4,
+					8,
+					0);
 
 			}
+
+			std::vector<Rect> bodys;
+			body_cascade.detectMultiScale(faceROI, bodys, 1.1, 2, 18 | 9, Size(3, 7));
+
+			for (int j = 0; j < bodys.size(); j++)
+			{
+				Point center(bodys[j].x + bodys[j].width * 0.5, bodys[j].y + +bodys[j].height * 0.5);
+				ellipse(frame,
+					center,
+					Size(bodys[j].width * 0.5,
+						bodys[j].height * 0.5),
+					0,
+					0,
+					360,
+					Scalar(255, 0, 255),
+					4,
+					8,
+					0);
+			}
 		}
+
 
 		imshow("Capture - Face and eye detection", frame);
 
