@@ -2,12 +2,12 @@
 Experimenting with the Intel Realsense D series RGB-D cameras  
 
 
-# #OpenCV  
+# OpenCV setup:  
 
 Clone OpenCV: https://github.com/opencv/opencv  
 Clone OpenCV Mods: https://github.com/opencv/opencv_contrib    
 
-**Cmake:  **  
+**Cmake: **  
 Source is /opencv/  
 Build to a new "build" folder  
 Configure: Select your version of Visual Studio (takes a few seconds)  
