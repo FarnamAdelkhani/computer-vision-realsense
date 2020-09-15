@@ -5,13 +5,13 @@ Experimenting with the Intel Realsense D series RGB-D cameras
 # #OpenCV  
 
 Clone OpenCV: https://github.com/opencv/opencv  
-Clone OpenCV Mods: https://github.com/opencv/opencv_contrib  
+Clone OpenCV Mods: https://github.com/opencv/opencv_contrib    
 
-**Cmake:  ** 
+**Cmake:  **  
 Source is /opencv/  
 Build to a new "build" folder  
 Configure: Select your version of Visual Studio (takes a few seconds)  
- ... Set 'Path' to /opencv_contrib/modules  
+ ... Set 'Path' to /opencv_contrib/modules    
 
 Open the VS solution file in new 'Build' directory:  
 We can build both debug and release versions of the library. (This takes several minutes, release takes even longer.)  

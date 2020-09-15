@@ -2,8 +2,6 @@
 
 #include <vector>
 
-///TODO Segmentation for eyes is off-center.
-
 using namespace cv;
 
 int main()
@@ -14,13 +12,18 @@ int main()
 	CascadeClassifier face_cascade;
 	CascadeClassifier eyes_cascade;
 
+	//Load cascades
 	face_cascade.load("third_party/opencv/etc/haarcascades/haarcascade_frontalface_default.xml");
 	eyes_cascade.load("third_party/opencv/etc/haarcascades/haarcascade_eye_tree_eyeglasses.xml");
 
+	//Set capture device
 	VideoCapture cap(0);
 
 	if (!cap.isOpened())
+	{
+		std::cout << "--(!)Error opening video capture device\n";
 		return -1;
+	}
 
 	//Infinite loop to get frames
 	// termination sequence determined inside loop
@@ -29,47 +32,72 @@ int main()
 		Mat frame;
 		cap >> frame;
 
-		//convert color image to greyscale
-		Mat grayscale;
-		cvtColor(frame, grayscale, COLOR_BGR2GRAY);
+		//Convert color image to greyscale
+		Mat gray_scale;
+		cvtColor(frame, gray_scale, COLOR_BGR2GRAY);
 
+		//Equalizes the histogram of a grayscale image.
+		equalizeHist(gray_scale, gray_scale);
+
+		//*Delete* - scaling in 'detectMultiScale'
 		//resize for GPU load optimization
-		resize(grayscale, grayscale, Size(grayscale.size().width / scale, grayscale.size().height / scale));
+		//resize(gray_scale, gray_scale, Size(gray_scale.size().width / scale, gray_scale.size().height / scale));
 
 		//Detect faces
 		std::vector<Rect> faces;
-		face_cascade.detectMultiScale(grayscale, faces, 1.1, 3, 0, Size(30, 30));
-
-		
-		//-- In each face, detect eyes
-		std::vector<Rect> eyes;
-		eyes_cascade.detectMultiScale(grayscale, eyes);
+		//Detects objects of different sizes in the input image. The detected objects are returned as a list of rectangles.
+		face_cascade.detectMultiScale( gray_scale,      //image - Matrix of the type CV_8U containing an image
+							   		   faces, 			//objects - Vector of rectangles where each rectangle contains the detected object
+							   		   1.2, 			//scaleFactor - Parameter specifying how much the image size is reduced at each image scale.
+							   		   3,               //minNeighbors - Parameter specifying how many neighbors each candidate rectangle should have to retain it.
+							   		   0,  
+							   		   Size(30, 30),    //minSize - Minimum possible object size. Objects smaller than that are ignored
+			                           Size(300,300));  //maxSize - Maximum possible object size. Objects larger than that are ignored.
 
 		for (size_t i = 0; i < faces.size(); i++)
 		{
-			//set rectangle color
-			Scalar drawColor = Scalar(255, 0, 0);
+			//Color palette
+			Scalar red = Scalar(255, 0, 0);
+			Scalar green = Scalar(0, 255, 0);
+			Scalar blue = Scalar(0, 0, 255);
 
-			//Rectangle X,Y with vertex @ X + width, Y + height
-			rectangle(frame, 
-				Point(cvRound(faces[i].x * scale), 
-					cvRound(faces[i].y * scale)),
-				Point(cvRound((faces[i].x + faces[i].width - 1) * scale), 
-					cvRound((faces[i].y + faces[i].height - 1) * scale)), 
-				drawColor);
+			Point center(faces[i].x + faces[i].width / 2, 
+						 faces[i].y + faces[i].height / 2);
+
+			ellipse(frame,						 //image
+					center, 					 //center
+					Size(faces[i].width / 2, 	 //axes
+						 faces[i].height / 2), 
+					0, 							 //angle
+					0, 							 //start angle
+					360, 						 //end angle
+					red, 						 //color
+					3,							 //thickness
+					0,							 //lineType
+					0 );						 //shift
+
+			Mat faceROI = gray_scale(faces[i]);
+
+			//Detect eyes in each face
+			std::vector<Rect> eyes;
+			eyes_cascade.detectMultiScale(faceROI, eyes);
 
 			for (size_t j = 0; j < eyes.size(); j++)
 			{
-				Point eye_center(faces[i].x + eyes[j].x + eyes[j].width ,
-					faces[i].y + eyes[j].y + eyes[j].height );
+				Point eye_center(faces[i].x + eyes[j].x + eyes[j].width / 2, 
+					             faces[i].y + eyes[j].y + eyes[j].height / 2);
 				
-				int radius = cvRound((eyes[j].width + eyes[j].height) * 0.25);
+				int radius = cvRound((eyes[j].width + eyes[j].height) * 0.20);
 
-				circle(frame, eye_center, radius, Scalar(255, 0, 0), 4);
+				circle( frame, 
+						eye_center, 
+						radius, 
+						blue,
+						3 );
 			}
 		}
 
-		imshow("Webcam Frame", frame);
+		imshow("Capture - Face and eye detection", frame);
 
 		if (waitKey(30) >= 0)
 			break;
