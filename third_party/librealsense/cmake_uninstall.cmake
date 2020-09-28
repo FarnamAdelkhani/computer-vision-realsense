@@ -1,14 +1,14 @@
-IF(NOT EXISTS "C:/GIT/librealsense/build/install_manifest.txt")
-  MESSAGE(WARNING "Cannot find install manifest: \"C:/GIT/librealsense/build/install_manifest.txt\"")
+IF(NOT EXISTS "@CMAKE_CURRENT_BINARY_DIR@/install_manifest.txt")
+  MESSAGE(WARNING "Cannot find install manifest: \"@CMAKE_CURRENT_BINARY_DIR@/install_manifest.txt\"")
   MESSAGE(STATUS "Uninstall targets will be skipped")
-ELSE(NOT EXISTS "C:/GIT/librealsense/build/install_manifest.txt")
-  FILE(READ "C:/GIT/librealsense/build/install_manifest.txt" files)
+ELSE(NOT EXISTS "@CMAKE_CURRENT_BINARY_DIR@/install_manifest.txt")
+  FILE(READ "@CMAKE_CURRENT_BINARY_DIR@/install_manifest.txt" files)
   STRING(REGEX REPLACE "\n" ";" files "${files}")
   FOREACH(file ${files})
     MESSAGE(STATUS "Uninstalling \"$ENV{DESTDIR}${file}\"")
     IF(EXISTS "$ENV{DESTDIR}${file}")
       EXEC_PROGRAM(
-        "C:/Users/Farnam/Desktop/cmake-3.18.2-win64-x64/bin/cmake.exe" ARGS "-E remove \"$ENV{DESTDIR}${file}\""
+        "@CMAKE_COMMAND@" ARGS "-E remove \"$ENV{DESTDIR}${file}\""
         OUTPUT_VARIABLE rm_out
         RETURN_VALUE rm_retval
         )
@@ -18,7 +18,7 @@ ELSE(NOT EXISTS "C:/GIT/librealsense/build/install_manifest.txt")
     ELSEIF(NOT "${CMAKE_VERSION}" STRLESS "2.8.1")
       IF(IS_SYMLINK "$ENV{DESTDIR}${file}")
         EXEC_PROGRAM(
-          "C:/Users/Farnam/Desktop/cmake-3.18.2-win64-x64/bin/cmake.exe" ARGS "-E remove \"$ENV{DESTDIR}${file}\""
+          "@CMAKE_COMMAND@" ARGS "-E remove \"$ENV{DESTDIR}${file}\""
           OUTPUT_VARIABLE rm_out
           RETURN_VALUE rm_retval
           )
@@ -31,4 +31,4 @@ ELSE(NOT EXISTS "C:/GIT/librealsense/build/install_manifest.txt")
     ENDIF(EXISTS "$ENV{DESTDIR}${file}")
   ENDFOREACH(file)
   execute_process(COMMAND ldconfig)
-ENDIF(NOT EXISTS "C:/GIT/librealsense/build/install_manifest.txt")
+ENDIF(NOT EXISTS "@CMAKE_CURRENT_BINARY_DIR@/install_manifest.txt")
